@@ -52,6 +52,56 @@ const Index = () => {
     "Практикующие осознанность и самоанализ"
   ];
 
+  const techFeatures = [
+    {
+      icon: "Cloud",
+      title: "Облачная архитектура",
+      description: "Работает из любой точки мира с любого устройства"
+    },
+    {
+      icon: "Gauge",
+      title: "Масштабируемость",
+      description: "Готовность к росту аудитории без потери производительности"
+    },
+    {
+      icon: "Shield",
+      title: "Безопасность",
+      description: "JWT авторизация и шифрование всех данных"
+    },
+    {
+      icon: "Zap",
+      title: "Производительность",
+      description: "Быстрая загрузка и мгновенный отклик интерфейса"
+    }
+  ];
+
+  const steps = [
+    {
+      number: 1,
+      title: "Зарегистрируйтесь",
+      description: "Создайте аккаунт за 30 секунд",
+      icon: "UserPlus"
+    },
+    {
+      number: 2,
+      title: "Оцените свой день",
+      description: "Выберите уровень энергии от 1 до 5",
+      icon: "Star"
+    },
+    {
+      number: 3,
+      title: "Анализируйте паттерны",
+      description: "Просматривайте графики и находите закономерности",
+      icon: "LineChart"
+    },
+    {
+      number: 4,
+      title: "Улучшайте жизнь",
+      description: "Принимайте решения на основе данных",
+      icon: "TrendingUp"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-primary/5 min-h-screen flex items-center">
@@ -265,6 +315,94 @@ const Index = () => {
       <section className="py-20 bg-gradient-to-br from-primary/5 to-accent/5">
         <div className="container mx-auto px-6">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            Как это работает?
+          </h2>
+          <p className="text-center text-muted-foreground mb-16 text-lg">
+            Начните отслеживать свою энергию за 4 простых шага
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {steps.map((step, index) => (
+              <div 
+                key={index}
+                className="relative animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="text-center">
+                  <div className="mx-auto w-20 h-20 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-6 relative">
+                    <Icon name={step.icon} className="w-10 h-10 text-background" />
+                    <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-accent flex items-center justify-center font-bold text-background">
+                      {step.number}
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
+                  <p className="text-muted-foreground">{step.description}</p>
+                </div>
+                {index < steps.length - 1 && (
+                  <div className="hidden lg:block absolute top-10 -right-4 w-8 h-0.5 bg-gradient-to-r from-primary to-accent"></div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-card/30">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            Технические особенности
+          </h2>
+          <p className="text-center text-muted-foreground mb-16 text-lg">
+            Надёжная и производительная архитектура для вашего спокойствия
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {techFeatures.map((feature, index) => (
+              <Card 
+                key={index}
+                className="p-6 bg-card border-border hover:border-accent/50 transition-all duration-300 animate-fade-in text-center"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="mx-auto w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-4">
+                  <Icon name={feature.icon} className="w-8 h-8 text-accent" />
+                </div>
+                <h3 className="font-semibold mb-2">{feature.title}</h3>
+                <p className="text-sm text-muted-foreground">{feature.description}</p>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mt-16 max-w-4xl mx-auto">
+            <Card className="p-8 bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
+              <div className="text-center">
+                <Icon name="Database" className="w-16 h-16 text-primary mx-auto mb-4" />
+                <h3 className="text-2xl font-bold mb-3">PostgreSQL база данных</h3>
+                <p className="text-muted-foreground mb-6">
+                  Все ваши данные надёжно хранятся в облачной базе данных с автоматическим резервным копированием
+                </p>
+                <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto">
+                  <div>
+                    <div className="text-3xl font-bold text-primary mb-1">99.9%</div>
+                    <div className="text-sm text-muted-foreground">Доступность</div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold text-accent mb-1">&lt;100мс</div>
+                    <div className="text-sm text-muted-foreground">Время отклика</div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold text-primary mb-1">24/7</div>
+                    <div className="text-sm text-muted-foreground">Мониторинг</div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-gradient-to-br from-background to-primary/5">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
             Для кого это приложение?
           </h2>
           <p className="text-center text-muted-foreground mb-16 text-lg">
@@ -290,32 +428,50 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-primary/10 via-accent/10 to-destructive/10 relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(159,226,191,0.15),transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(116,209,230,0.15),transparent_50%)]"></div>
         
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Готовы начать отслеживать свою энергию?
-          </h2>
-          <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Присоединяйтесь к FlowKat и начните понимать свои эмоциональные паттерны уже сегодня
-          </p>
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-4xl mx-auto">
+            <Card className="p-12 bg-card/80 backdrop-blur-sm border-border">
+              <div className="text-center mb-10">
+                <h2 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in">
+                  Готовы начать?
+                </h2>
+                <p className="text-xl text-muted-foreground animate-fade-in" style={{ animationDelay: '0.1s' }}>
+                  Присоединяйтесь к FlowKat и начните понимать себя лучше уже сегодня
+                </p>
+              </div>
 
-          <div className="flex flex-wrap justify-center gap-6">
-            <Button 
-              size="lg" 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-12 py-6 text-lg"
-            >
-              Начать бесплатно
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-2 border-accent text-accent hover:bg-accent/10 font-semibold px-12 py-6 text-lg"
-            >
-              Связаться с нами
-            </Button>
+              <div className="grid md:grid-cols-3 gap-8 mb-10">
+                <div className="text-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                  <div className="text-4xl font-bold text-primary mb-2">30 сек</div>
+                  <div className="text-muted-foreground">Ежедневно</div>
+                </div>
+                <div className="text-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                  <div className="text-4xl font-bold text-accent mb-2">100%</div>
+                  <div className="text-muted-foreground">Приватность</div>
+                </div>
+                <div className="text-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
+                  <div className="text-4xl font-bold text-primary mb-2">Бесплатно</div>
+                  <div className="text-muted-foreground">Навсегда</div>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <Button 
+                  size="lg" 
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-12 py-6 text-lg animate-fade-in"
+                  style={{ animationDelay: '0.5s' }}
+                >
+                  Начать отслеживать энергию
+                </Button>
+                <p className="text-sm text-muted-foreground mt-4 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+                  Регистрация не требуется • Начните за 30 секунд
+                </p>
+              </div>
+            </Card>
           </div>
         </div>
       </section>
