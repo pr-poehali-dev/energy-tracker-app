@@ -180,6 +180,91 @@ const Index = () => {
       <section className="py-20 bg-card/30">
         <div className="container mx-auto px-6">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            Визуализация энергии
+          </h2>
+          <p className="text-center text-muted-foreground mb-16 text-lg">
+            Наглядные графики помогают отслеживать динамику вашего состояния
+          </p>
+
+          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <Card className="p-8 bg-card border-border">
+              <h3 className="text-2xl font-semibold mb-6">Недельная статистика</h3>
+              <div className="space-y-4">
+                {[
+                  { day: 'Пн', value: 4, color: 'hsl(81, 63%, 52%)' },
+                  { day: 'Вт', value: 3, color: 'hsl(204, 96%, 69%)' },
+                  { day: 'Ср', value: 5, color: 'hsl(81, 70%, 40%)' },
+                  { day: 'Чт', value: 2, color: 'hsl(353, 70%, 60%)' },
+                  { day: 'Пт', value: 4, color: 'hsl(81, 63%, 52%)' },
+                  { day: 'Сб', value: 5, color: 'hsl(81, 70%, 40%)' },
+                  { day: 'Вс', value: 4, color: 'hsl(81, 63%, 52%)' },
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center gap-4 animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                    <span className="w-8 text-sm font-medium text-muted-foreground">{item.day}</span>
+                    <div className="flex-1 h-12 bg-muted/20 rounded-lg overflow-hidden">
+                      <div 
+                        className="h-full flex items-center justify-end pr-4 font-bold text-lg transition-all duration-1000 ease-out"
+                        style={{ 
+                          width: `${(item.value / 5) * 100}%`,
+                          backgroundColor: item.color,
+                          transitionDelay: `${index * 0.1}s`
+                        }}
+                      >
+                        {item.value}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-sm text-muted-foreground mt-6 text-center">
+                Средний уровень энергии: <span className="text-primary font-semibold">3.9</span>
+              </p>
+            </Card>
+
+            <Card className="p-8 bg-card border-border">
+              <h3 className="text-2xl font-semibold mb-6">Распределение по уровням</h3>
+              <div className="space-y-6">
+                {[
+                  { level: 5, label: 'Отличные дни', count: 3, percent: 43, color: 'hsl(81, 70%, 40%)' },
+                  { level: 4, label: 'Хорошие дни', count: 3, percent: 43, color: 'hsl(81, 63%, 52%)' },
+                  { level: 3, label: 'Средние дни', count: 1, percent: 14, color: 'hsl(204, 96%, 69%)' },
+                  { level: 2, label: 'Сложные дни', count: 1, percent: 14, color: 'hsl(353, 70%, 60%)' },
+                  { level: 1, label: 'Тяжёлые дни', count: 0, percent: 0, color: 'hsl(353, 93%, 70%)' },
+                ].map((item, index) => (
+                  <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-3">
+                        <div 
+                          className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-lg"
+                          style={{ backgroundColor: item.color }}
+                        >
+                          {item.level}
+                        </div>
+                        <span className="font-medium">{item.label}</span>
+                      </div>
+                      <span className="text-muted-foreground">{item.count} дней</span>
+                    </div>
+                    <div className="h-2 bg-muted/20 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full transition-all duration-1000 ease-out"
+                        style={{ 
+                          width: `${item.percent}%`,
+                          backgroundColor: item.color,
+                          transitionDelay: `${index * 0.1}s`
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-gradient-to-br from-primary/5 to-accent/5">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
             Для кого это приложение?
           </h2>
           <p className="text-center text-muted-foreground mb-16 text-lg">
